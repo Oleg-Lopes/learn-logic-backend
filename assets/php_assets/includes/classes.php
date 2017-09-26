@@ -146,18 +146,32 @@
             $req = $db->prepare("SELECT * FROM ".$level."_");
             $req->execute();
 
+
+            echo "
+            <tr>
+                <td id='td_form'>
+                    <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='formAdd' id='formAdd'>
+                        <input name='date' type='date' required>
+                        <input name='place' type='text' placeholder='Plats' required>
+                        <input name='price' type='number' placeholder='Pris' required>
+                        <input name='submit' type='submit' value='ADD'>
+                    </form>
+                </td>
+            </tr>
+            ";
+
             while ($data=$req->fetch()) {
                 echo "
                 <tr>
                     <td>{$data['date']}</td>
                     <td>{$data['place']}</td>
                     <td>{$data['price']}</td>
-                    <td><button id='{$data['id']}' class='change'>ÄNDRA</button></td>
+                    <td><button id='{$level}_{$data['id']}' class='change'>ÄNDRA</button></td>
                     <td><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button>TA BORT</button></a></td>
                 </tr>
                 <tr>
                     <td id='td_form'>
-                        <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form' id='{$data['id']}"."form'>
+                        <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form' id='{$level}_{$data['id']}"."form'>
                             <input name='date' type='date' value='{$data['date']}' required>
                             <input name='place' type='text' value='{$data['place']}' required>
                             <input name='price' type='number' value='{$data['price']}' required>
@@ -177,7 +191,7 @@
             $req = $db->prepare("UPDATE ".$level."_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id");
             $req->execute();
 
-            header("location: ../../admin.php");
+            header("location: ../../admin.php?level={$level}");
         }
 
         function delete($level, $id) {
@@ -186,7 +200,20 @@
             $req = $db->prepare("DELETE FROM ".$level."_ WHERE id = $id");
             $req->execute();
 
-            header("location: ../../admin.php");
+            header("location: ../../admin.php?level={$level}");
+
+        }
+
+        function add($level) {
+            include "conn.php";
+            $date = $this->getDate();
+            $place = $this->getPlace();
+            $price = $this->getPrice();
+            
+            $req = $db->prepare("INSERT INTO ".$level."_ (date, place, price) VALUES ('{$date}', '{$place}', '{$price}')");
+            $req->execute();
+
+            header("location: ../../admin.php?level={$level}");
 
         }
     }

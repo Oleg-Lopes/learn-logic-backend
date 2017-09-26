@@ -16,6 +16,10 @@ table {
   display: none;
 }
 
+.formAdd {
+  display: block;
+}
+
 .level {
   display: none;
 }

@@ -14,6 +14,17 @@
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function () {
+            <?php 
+                if (isset($_GET['level'])) {
+                    echo "if ({$_GET['level']} == '1') {
+                        $('#level1').show();}
+                    else if ({$_GET['level']} == '2') {
+                        $('#level2').show();}
+                    else if ({$_GET['level']} == '3') {
+                        $('#level3').show();}";
+                }
+            ?>
+
             $("#nav_level_1").click(function () {
                 if ($("#level1").is(":hidden")) {
                     $(".level").hide();
