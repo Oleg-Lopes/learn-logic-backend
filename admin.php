@@ -49,13 +49,22 @@
 
 
 
-            $(".level").on('click', '.change', function () { // SHOW/HIDE FROM FOR EACH LINE IN LIST
+            $(".table").on('click', '.change', function () { // SHOW/HIDE FROM FOR EACH LINE IN LIST
                 var id = $(this).attr("id");
                 if ($("#"+id+"form").is(":hidden")) {
                     $(".form").hide();
                     $("#"+id+"form").css('display', 'table-row');
                 } else { $(".form").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN LIST
+
+            $(".table").on('click', '.th', function () {
+                var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
+                var sortId = $(this).attr("id").split("sort"); // sort after [1]
+                $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
+                    $(".fa-caret-down").hide();
+                    $("#caret"+sortId[1]).toggle();
+                });
+            });
         });
     </script>
 </head>

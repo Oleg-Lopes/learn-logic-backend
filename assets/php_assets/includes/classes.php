@@ -141,7 +141,17 @@
             include "conn.php";
             $req = $db->prepare("SELECT * FROM {$level}_");
             $req->execute();
+            $this->show_admin_level($req, $level);
+        }
 
+        function sort($level, $sort) {
+            include "conn.php";
+            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY $sort");
+            $req->execute();
+            $this->show_admin_level($req, $level);
+        }
+        
+        function show_admin_level($req, $level) {
             echo "
                 <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='formAdd tr' id='formAdd'>
                     <span class='td'><input name='date' type='date' required></span>
@@ -151,11 +161,10 @@
                 </form>
                 <br>
                 <div class='tr'>
-                    <span class='th'>DATUM <i class='fa fa-caret-down' aria-hidden='true'></i></span>
-                    <span class='th'>PLATS <i class='fa fa-caret-down' aria-hidden='true'></i></span>
-                    <span class='th'>PRIS <i class='fa fa-caret-down' aria-hidden='true'></i></span>
-                </div>
-            ";
+                    <span class='th th{$level}' id='sortdate'>DATUM <i id='caretdate' class='fa fa-caret-down' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortplace'>PLATS <i id='caretplace' class='fa fa-caret-down' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortprice'>PRIS <i id='caretprice' class='fa fa-caret-down' aria-hidden='true'></i></span>
+                </div>";
 
             while ($data=$req->fetch()) {
                 echo "
