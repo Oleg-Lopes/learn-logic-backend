@@ -146,39 +146,31 @@
             $req = $db->prepare("SELECT * FROM ".$level."_");
             $req->execute();
 
-
             echo "
-            <tr>
-                <td id='td_form'>
-                    <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='formAdd' id='formAdd'>
-                        <input name='date' type='date' required>
-                        <input name='place' type='text' placeholder='Plats' required>
-                        <input name='price' type='number' placeholder='Pris' required>
-                        <input name='submit' type='submit' value='ADD'>
-                    </form>
-                </td>
-            </tr>
+                <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='formAdd tr' id='formAdd'>
+                    <span class='td'><input name='date' type='date' required></span>
+                    <span class='td'><input name='place' type='text' placeholder='Plats' required></span>
+                    <span class='td'><input name='price' type='number' placeholder='Pris' required></span>
+                    <span class='td'><input name='submit' type='submit' value='ADD'></span>
+                </form>
             ";
 
             while ($data=$req->fetch()) {
                 echo "
-                <tr>
-                    <td>{$data['date']}</td>
-                    <td>{$data['place']}</td>
-                    <td>{$data['price']}</td>
-                    <td><button id='{$level}_{$data['id']}' class='change'>ÄNDRA</button></td>
-                    <td><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button>TA BORT</button></a></td>
-                </tr>
-                <tr>
-                    <td id='td_form'>
-                        <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form' id='{$level}_{$data['id']}"."form'>
-                            <input name='date' type='date' value='{$data['date']}' required>
-                            <input name='place' type='text' value='{$data['place']}' required>
-                            <input name='price' type='number' value='{$data['price']}' required>
-                            <input name='submit' type='submit' value='SAVE'>
-                        </form>
-                    </td>
-                </tr>";
+                <div class='tr'>
+                    <span class='td'>{$data['date']}</span>
+                    <span class='td'>{$data['place']}</span>
+                    <span class='td'>{$data['price']}</span>
+                    <span class='td'><button id='{$level}_{$data['id']}' class='change'>ÄNDRA</button></span>
+                    <span class='td'><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button>TA BORT</button></a></span>
+                </div>
+
+                <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}"."form'>
+                    <span class='td'><input name='date' type='date' value='{$data['date']}' required></span>
+                    <span class='td'><input name='place' type='text' value='{$data['place']}' required></span>
+                    <span class='td'><input name='price' type='number' value='{$data['price']}' required></span>
+                    <span class='td'><input name='submit' type='submit' value='SAVE'></span>
+                </form>";
             }
         }
 

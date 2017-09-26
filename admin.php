@@ -52,8 +52,8 @@
                 var id = $(this).attr("id");
                 if ($("#"+id+"form").is(":hidden")) {
                     $(".form").hide();
-                    $("#"+id+"form").slideDown();
-                } else { $(".form").slideUp(); }
+                    $("#"+id+"form").css('display', 'table-row');
+                } else { $(".form").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN TABLE
 
 
@@ -104,30 +104,30 @@
 
 
     <!-- START OF TABLE LEVEL 1 -->
-    <section id="level1" class="level"><table>
+    <section id="level1" class="level"><div class="table">
     <?php
         $level->level_all('1');
-    ?></table>
+    ?></div>
     </section>
     <!-- END OF TABLE LEVEL 1 -->
 
 
 
     <!-- START OF TABLE LEVEL 2 -->
-    <section id="level2" class="level"><table>
+    <section id="level2" class="level"><div class="table">
         <?php
             $level->level_all('2');
-        ?></table>
+        ?></div>
     </section>
     <!-- END OF TABLE LEVEL 2 -->
 
 
 
     <!-- START OF TABLE LEVEL 3 -->
-    <section id="level3" class="level"><table>
+    <section id="level3" class="level"><div class="table">
         <?php
             $level->level_all('3');
-        ?></table>
+        ?></div>
     </section>
     <!-- END OF TABLE LEVEL 3 -->
     <a href="index.php">to Level 1</a>
