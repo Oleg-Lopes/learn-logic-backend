@@ -10,6 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="./assets/css/index.css">
     <title>Level 1</title>
+    <script src="https://use.fontawesome.com/433d64420a.js"></script>
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function () { // SHOW/HIDE LISTS

@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="./assets/css/index.css">
     <link rel="stylesheet" href="./assets/css/admin.css">
     <title>Admin</title>
+    <script src="https://use.fontawesome.com/433d64420a.js"></script>
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function () {

@@ -149,6 +149,12 @@
                     <span class='td'><input name='price' type='number' placeholder='Pris' required></span>
                     <span class='td'><input name='submit' type='submit' value='ADD'></span>
                 </form>
+                <br>
+                <div class='tr'>
+                    <span class='th'>DATUM <i class='fa fa-caret-down' aria-hidden='true'></i></span>
+                    <span class='th'>PLATS <i class='fa fa-caret-down' aria-hidden='true'></i></span>
+                    <span class='th'>PRIS <i class='fa fa-caret-down' aria-hidden='true'></i></span>
+                </div>
             ";
 
             while ($data=$req->fetch()) {
