@@ -14,7 +14,7 @@
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function () {
-            <?php 
+            <?php // SHOW THE LEVEL YOU OPERATED WITH LAST
                 if (isset($_GET['level'])) {
                     echo "if ({$_GET['level']} == '1') {
                         $('#level1').show();}
@@ -23,9 +23,11 @@
                     else if ({$_GET['level']} == '3') {
                         $('#level3').show();}";
                 }
-            ?>
+            ?> // SHOW THE LEVEL YOU OPERATED WITH LAST
 
-            $("#nav_level_1").click(function () {
+
+
+            $("#nav_level_1").click(function () { // SHOW/HIDE TABLES WITH LEVELS
                 if ($("#level1").is(":hidden")) {
                     $(".level").hide();
                     $("#level1").show();
@@ -45,7 +47,8 @@
             }); // SHOW/HIDE TABLES WITH LEVELS
 
 
-            $(".level").on('click', '.change', function () {
+
+            $(".level").on('click', '.change', function () { // SHOW/HIDE FROM FOR EACH LINE IN TABLE
                 var id = $(this).attr("id");
                 if ($("#"+id+"form").is(":hidden")) {
                     $(".form").hide();

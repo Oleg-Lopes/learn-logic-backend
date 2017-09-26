@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+	<style>
+		DIV.table 
+		{
+			display:table;
+		}
+		FORM.tr, DIV.tr
+		{
+			display:table-row;
+		}
+		SPAN.td
+		{
+			display:table-cell;
+		}
+	</style>
 </head>
 <body>
 <body>
@@ -40,5 +54,17 @@
 			<input type="submit" value="Отправить" />
 		</p>
 	</form>
+
+	<h1>TEST table</h1>
+	<div class="table">
+	<form class="tr" method="post" action="blah.html">
+		<span class="td"><input type="text"/></span>
+		<span class="td"><input type="text"/></span>
+	</form>
+	<div class="tr">
+		<span class="td">(cell data)</span>
+		<span class="td">(cell data)</span>
+	</div>
+</div>
 </body>
 </html>
