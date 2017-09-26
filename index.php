@@ -45,15 +45,15 @@
 
 
             $("#showall1").click(function () { // SHOW ALL LINES FOR EACH LIST
-                $("#level1 table").load("assets/php_assets/level_all.php?level=1");
+                $("#level1 .table").load("assets/php_assets/level_all.php?level=1");
                 $(this).hide();
             });
             $("#showall2").click(function () {
-                $("#level2 table").load("assets/php_assets/level_all.php?level=2");
+                $("#level2 .table").load("assets/php_assets/level_all.php?level=2");
                 $(this).hide();
             });
             $("#showall3").click(function () {
-                $("#level3 table").load("assets/php_assets/level_all.php?level=3");
+                $("#level3 .table").load("assets/php_assets/level_all.php?level=3");
                 $(this).hide();
             }); // SHOW ALL LINES FOR EACH LIST
         });
