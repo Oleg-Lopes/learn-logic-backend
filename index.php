@@ -12,7 +12,7 @@
     <title>Level 1</title>
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function () { // SHOW/HIDE LISTS
             $("#nav_level_1").click(function () {
                 if ($("#level1").is(":hidden")) {
                     $(".level").hide();
@@ -30,18 +30,21 @@
                     $(".level").hide();
                     $("#level3").show();
                 } else { $("#level3").toggle(); }
-            }); // SHOW/HIDE TABLES WITH LEVELS
+            }); // SHOW/HIDE LISTS
 
 
-            $(".level").on('click', '.boka', function () {
+
+            $(".level").on('click', '.boka', function () { // SHOW/HIDE FORM FOR EACH LINE IN LIST
                 var id = $(this).attr("id");
                 if ($("#"+id+"form").is(":hidden")) {
                     $(".form").hide();
                     $("#"+id+"form").slideDown();
                 } else { $(".form").slideUp(); }
-            }); // SHOW/HIDE FROM FOR EACH LINE IN TABLE
+            }); // SHOW/HIDE FORM FOR EACH LINE IN LIST
 
-            $("#showall1").click(function () {
+
+
+            $("#showall1").click(function () { // SHOW ALL LINES FOR EACH LIST
                 $("#level1 table").load("assets/php_assets/level_all.php?level=1");
                 $(this).hide();
             });
@@ -52,7 +55,7 @@
             $("#showall3").click(function () {
                 $("#level3 table").load("assets/php_assets/level_all.php?level=3");
                 $(this).hide();
-            }); // SHOW ALL LINES FOR EACH TABLE
+            }); // SHOW ALL LINES FOR EACH LIST
         });
     </script>
 </head>
@@ -67,36 +70,36 @@
     
 
 
-    <!-- START OF TABLE LEVEL 1 -->
+    <!-- START OF LIST LEVEL 1 -->
     <section id="level1" class="level"><div class="table">
         <?php
             $level->level_15('1');
         ?></div>
         <button id="showall1">Show all</button>
     </section>
-    <!-- END OF TABLE LEVEL 1 -->
+    <!-- END OF LIST LEVEL 1 -->
 
 
 
-    <!-- START OF TABLE LEVEL 2 -->
+    <!-- START OF LIST LEVEL 2 -->
     <section id="level2" class="level"><div class="table">
         <?php
             $level->level_15('2');
         ?></div>
         <button id="showall2">Show all</button>
     </section>
-    <!-- END OF TABLE LEVEL 2 -->
+    <!-- END OF LIST LEVEL 2 -->
 
 
 
-    <!-- START OF TABLE LEVEL 3 -->
+    <!-- START OF LIST LEVEL 3 -->
     <section id="level3" class="level"><div class="table">
         <?php
             $level->level_15('3');
         ?></div>
         <button id="showall3">Show all</button>
     </section>
-    <!-- END OF TABLE LEVEL 3 -->
+    <!-- END OF LIST LEVEL 3 -->
 
 
 
