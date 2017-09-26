@@ -55,40 +55,6 @@
                     $("#"+id+"form").css('display', 'table-row');
                 } else { $(".form").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN TABLE
-
-
-
-
-            /*$(".submit").click(function () {
-                var levelArr = $(this).closest("section").attr('id').split("level");
-                var level = levelArr[1];
-                var idArr = $(this).closest("form").attr('id').split("form");
-                var id = idArr[0];
-                var date = $(this).siblings(".date").val();
-                var place = $(this).siblings(".place").val();
-                var price = $(this).siblings(".price").val();
-                $.ajax({
-                    type: 'POST',
-                    url: 'assets/php_assets/admin_save.php',
-                    data: {
-                        date: date,
-                        place: place,
-                        price: price,
-                        level: level,
-                        id: id
-                    },
-                    success: function () {
-                        $("#level"+level+" table").load("assets/php_assets/level_all.php?level="+level);
-                    },
-                    error: function () {
-                        alert("error");
-                    }
-                });
-            });*/
-
-            
-
-
         });
     </script>
 </head>

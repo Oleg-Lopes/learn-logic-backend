@@ -4,4 +4,3 @@
     
     $level = new level();
     $level->level_all($_GET['level']);
-?>

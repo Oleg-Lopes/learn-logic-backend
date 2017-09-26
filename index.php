@@ -68,10 +68,10 @@
 
 
     <!-- START OF TABLE LEVEL 1 -->
-    <section id="level1" class="level"><table>
+    <section id="level1" class="level"><div class="table">
         <?php
             $level->level_15('1');
-        ?></table>
+        ?></div>
         <button id="showall1">Show all</button>
     </section>
     <!-- END OF TABLE LEVEL 1 -->
@@ -79,10 +79,10 @@
 
 
     <!-- START OF TABLE LEVEL 2 -->
-    <section id="level2" class="level"><table>
+    <section id="level2" class="level"><div class="table">
         <?php
             $level->level_15('2');
-        ?></table>
+        ?></div>
         <button id="showall2">Show all</button>
     </section>
     <!-- END OF TABLE LEVEL 2 -->
@@ -90,10 +90,10 @@
 
 
     <!-- START OF TABLE LEVEL 3 -->
-    <section id="level3" class="level"><table>
+    <section id="level3" class="level"><div class="table">
         <?php
             $level->level_15('3');
-        ?></table>
+        ?></div>
         <button id="showall3">Show all</button>
     </section>
     <!-- END OF TABLE LEVEL 3 -->

@@ -17,14 +17,14 @@
 
         function level_15($level) {
             include "conn.php";
-            $req = $db->prepare("SELECT * FROM ".$level."_ ORDER BY id DESC LIMIT 2");
+            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY id DESC LIMIT 2");
             $req->execute();
             $this->show_level($req, $level);
         }
         
         function level_all($level) {
             include "conn.php";
-            $req = $db->prepare("SELECT * FROM ".$level."_ ORDER BY id DESC");
+            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY id DESC");
             $req->execute();
             $this->show_level($req, $level);
         }
@@ -32,26 +32,22 @@
         function show_level($req, $level) {
             while ($data=$req->fetch()) {
                 echo "
-                <tr>
-                    <td>".$data['date']."</td>
-                    <td>".$data['place']."</td>
-                    <td>".$data['price']."</td>
-                    <td><button id='{$data['id']}' class='boka' style='background:green'>Boka</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form' id='{$data['id']}"."form'>
-                            <input name='name' type='text' placeholder='Förnamn*' required>
-                            <input name='sname' type='text' placeholder='Efternan*' required>
-                            <input name='persnmr' type='number' placeholder='yymmddnnnn*' required>
-                            <input name='tel' type='number' placeholder='0123456789*' required>
-                            <input name='email' type='email' placeholder='Email*' required>
-                            <input name='firm' type='text' placeholder='Företag'>
-                            <textarea name='comment' placeholder='Övrigt'></textarea>
-                            <input name='submit' type='submit' value='BOKA'>
-                        </form>
-                    </td>
-                </tr>";
+                <div class='tr'>
+                    <span class='td'>{$data['date']}</span>
+                    <span class='td'>{$data['place']}</span>
+                    <span class='td'>{$data['price']}</span>
+                    <span class='td'><button id='{$data['id']}' class='boka' style='background:green'>Boka</button></span>
+                </div>
+                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$data['id']}form'>
+                    <span class='td'><input name='name' type='text' placeholder='Förnamn*' required></span>
+                    <span class='td'><input name='sname' type='text' placeholder='Efternan*' required></span>
+                    <span class='td'><input name='persnmr' type='number' placeholder='yymmddnnnn*' required></span>
+                    <span class='td'><input name='tel' type='number' placeholder='0123456789*' required></span>
+                    <span class='td'><input name='email' type='email' placeholder='Email*' required></span>
+                    <span class='td'><input name='firm' type='text' placeholder='Företag'></span>
+                    <span class='td'><textarea name='comment' placeholder='Övrigt'></textarea></span>
+                    <span class='td'><input name='submit' type='submit' value='BOKA'></span>
+                </form>";
             }
         }
 
@@ -65,7 +61,7 @@
             $comment = $this->getComment();
 
             include "includes/conn.php";
-            $req = $db->prepare("SELECT * FROM ".$level."_ WHERE id = '{$id}' ORDER BY id DESC");
+            $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '{$id}' ORDER BY id DESC");
             $req->execute();
             $data=$req->fetch();
 
@@ -143,7 +139,7 @@
 
         function level_all($level) {
             include "conn.php";
-            $req = $db->prepare("SELECT * FROM ".$level."_");
+            $req = $db->prepare("SELECT * FROM {$level}_");
             $req->execute();
 
             echo "
@@ -165,7 +161,7 @@
                     <span class='td'><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button>TA BORT</button></a></span>
                 </div>
 
-                <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}"."form'>
+                <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}form'>
                     <span class='td'><input name='date' type='date' value='{$data['date']}' required></span>
                     <span class='td'><input name='place' type='text' value='{$data['place']}' required></span>
                     <span class='td'><input name='price' type='number' value='{$data['price']}' required></span>
@@ -180,7 +176,7 @@
             $place = $this->getPlace();
             $price = $this->getPrice();
             
-            $req = $db->prepare("UPDATE ".$level."_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id");
+            $req = $db->prepare("UPDATE {$level}_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id");
             $req->execute();
 
             header("location: ../../admin.php?level={$level}");
@@ -189,7 +185,7 @@
         function delete($level, $id) {
             include "conn.php";
             
-            $req = $db->prepare("DELETE FROM ".$level."_ WHERE id = $id");
+            $req = $db->prepare("DELETE FROM {$level}_ WHERE id = $id");
             $req->execute();
 
             header("location: ../../admin.php?level={$level}");
@@ -202,7 +198,7 @@
             $place = $this->getPlace();
             $price = $this->getPrice();
             
-            $req = $db->prepare("INSERT INTO ".$level."_ (date, place, price) VALUES ('{$date}', '{$place}', '{$price}')");
+            $req = $db->prepare("INSERT INTO {$level}_ (date, place, price) VALUES ('{$date}', '{$place}', '{$price}')");
             $req->execute();
 
             header("location: ../../admin.php?level={$level}");
