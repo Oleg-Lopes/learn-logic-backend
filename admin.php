@@ -27,24 +27,16 @@
             ?> // SHOW THE LIST YOU OPERATED WITH LAST
 
 
+            var sortDir = ['date', 'place', 'price']; // SORT LISTS BY ARRAY
 
-            $("#nav_level_1").click(function () { // SHOW/HIDE LISTS
-                if ($("#level1").is(":hidden")) {
+            $(".nav-level").click(function () { // SHOW/HIDE LISTS
+                var level = $(this).attr("id").split("nav-level");
+                if ($("#level"+level[1]).is(":hidden")) {
                     $(".level").hide();
-                    $("#level1").show();
-                } else { $("#level1").toggle(); }
-            });
-            $("#nav_level_2").click(function () {
-                if ($("#level2").is(":hidden")) {
-                    $(".level").hide();
-                    $("#level2").show();
-                } else { $("#level2").toggle(); }
-            });
-            $("#nav_level_3").click(function () {
-                if ($("#level3").is(":hidden")) {
-                    $(".level").hide();
-                    $("#level3").show();
-                } else { $("#level3").toggle(); }
+                    $("#level"+level[1]).show();
+                } else { $("#level"+level[1]).toggle(); }
+                
+                sortDir = ['date', 'place', 'price']; // SORT LISTS RESET
             }); // SHOW/HIDE LISTS
 
 
@@ -59,10 +51,9 @@
 
 
 
-            var sortDir = ['date', 'place', 'price']; // SORT LISTS BY ..
             $(".table").on('click', '.th', function () {
                 var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
-                var sortId = $(this).attr("id").split("sort"); // sort after [1]
+                var sortId = $(this).attr("id").split("sort"); // sort after date/place/price [1]
                 var num = jQuery.inArray(sortId[1], sortDir);
                 if (num > -1) { // min to max sort
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
@@ -85,9 +76,9 @@
 <body>
     <!-- START OF NAVIGATION THROUGH LEVELS -->
     <nav><ul>
-            <li id="nav_level_1">Level 1</li>
-            <li id="nav_level_2">Level 2</li>
-            <li id="nav_level_3">Level 3</li>
+            <li id="nav-level1" class="nav-level">Level 1</li>
+            <li id="nav-level2" class="nav-level">Level 2</li>
+            <li id="nav-level3" class="nav-level">Level 3</li>
         </ul></nav>
     <!-- END OF NAVIGATION THROUGH LEVELS -->
     
