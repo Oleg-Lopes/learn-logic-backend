@@ -69,13 +69,14 @@
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
                         $(".fa-caret-down").hide();
                         $("#caretdown"+sortId[1]).toggle();
-                        sortDir = ['0', '0', '0']; // next click max to min sort
+                        sortDir = ['date', 'place', 'price']; // next click for all min to max sort
+                        sortDir[num] = 0; // next click for this max to min sort
                     });
                 } else { // max to min sort
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort_desc.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
                         $(".fa-caret-down").hide();
                         $("#caretup"+sortId[1]).toggle();
-                        sortDir = ['date', 'place', 'price']; // next click min to max sort
+                        sortDir = ['date', 'place', 'price']; // next click for all min to max sort
                     });
                 }
             });
