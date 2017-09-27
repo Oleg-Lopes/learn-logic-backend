@@ -57,7 +57,9 @@
                 } else { $(".form").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN LIST
 
-            var sortDir = ['date', 'place', 'price'];
+
+
+            var sortDir = ['date', 'place', 'price']; // SORT LISTS BY ..
             $(".table").on('click', '.th', function () {
                 var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
                 var sortId = $(this).attr("id").split("sort"); // sort after [1]
@@ -76,7 +78,7 @@
                         sortDir = ['date', 'place', 'price']; // next click for all min to max sort
                     });
                 }
-            });
+            }); // SORT LISTS BY ..
         });
     </script>
 </head>
