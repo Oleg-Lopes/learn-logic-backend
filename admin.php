@@ -65,17 +65,17 @@
                 var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
                 var sortId = $(this).attr("id").split("sort"); // sort after [1]
                 var num = jQuery.inArray(sortId[1], sortDir);
-                if (num > -1) {
+                if (num > -1) { // min to max sort
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
                         $(".fa-caret-down").hide();
                         $("#caretdown"+sortId[1]).toggle();
-                        sortDir = ['0', '0', '0'];
+                        sortDir = ['0', '0', '0']; // next click max to min sort
                     });
-                } else {
+                } else { // max to min sort
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort_desc.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
                         $(".fa-caret-down").hide();
                         $("#caretup"+sortId[1]).toggle();
-                        sortDir = ['date', 'place', 'price'];
+                        sortDir = ['date', 'place', 'price']; // next click min to max sort
                     });
                 }
             });
