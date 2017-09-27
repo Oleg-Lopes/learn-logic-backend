@@ -39,14 +39,22 @@
                     <span class='td'><button id='{$data['id']}' class='boka' style='background:green'>Boka</button></span>
                 </div>
                 <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$data['id']}form'>
-                    <span class='td'><input name='name' type='text' placeholder='Förnamn*' required></span>
-                    <span class='td'><input name='sname' type='text' placeholder='Efternan*' required></span>
-                    <span class='td'><input name='persnmr' type='number' placeholder='yymmddnnnn*' required></span>
-                    <span class='td'><input name='tel' type='number' placeholder='0123456789*' required></span>
-                    <span class='td'><input name='email' type='email' placeholder='Email*' required></span>
-                    <span class='td'><input name='firm' type='text' placeholder='Företag'></span>
-                    <span class='td'><textarea name='comment' placeholder='Övrigt'></textarea></span>
-                    <span class='td'><input name='submit' type='submit' value='BOKA'></span>
+                    <span class='td'>
+                        <input name='name' type='text' placeholder='Förnamn*' required>
+                        <input name='sname' type='text' placeholder='Efternan*' required>
+                    </span>
+                    <span class='td'>
+                        <input name='persnmr' type='number' placeholder='yymmddnnnn*' required>
+                        <input name='tel' type='number' placeholder='0123456789*' required>
+                    </span>
+                    <span class='td'>
+                        <input name='email' type='email' placeholder='Email*' required>
+                        <input name='firm' type='text' placeholder='Företag'>
+                    </span>
+                    <span class='td'>
+                        <textarea name='comment' placeholder='Övrigt'></textarea>
+                        <input name='submit' type='submit' value='BOKA'>
+                    </span>
                 </form>";
             }
         }
