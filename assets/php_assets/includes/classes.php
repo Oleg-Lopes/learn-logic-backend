@@ -16,20 +16,21 @@
         public function getComment(){return $this->comment;}
 
         function level_15($level) {
-            include "conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY id DESC LIMIT 2");
-            $req->execute();
-            $this->show_level($req, $level);
+            $sql = "SELECT * FROM {$level}_ ORDER BY id DESC LIMIT 2";
+            $this->show_level($sql, $level);
         }
         
         function level_all($level) {
             include "conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY id DESC");
-            $req->execute();
-            $this->show_level($req, $level);
+            $sql = "SELECT * FROM {$level}_ ORDER BY id DESC";
+            $this->show_level($sql, $level);
         }
 
-        function show_level($req, $level) {
+        function show_level($sql, $level) {
+            include "conn.php";
+            $req = $db->prepare($sql);
+            $req->execute();
+            
             while ($data=$req->fetch()) {
                 echo "
                 <div class='tr'>
@@ -125,12 +126,12 @@
 
                 Firm: {$firm}
                 Övrigt: {$comment}
-            ";
-            /*if (mail($email, "Tack för bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {
-            */    $req = $db->prepare("INSERT INTO clients (name, persnmr, level, place, ddate, info) VALUES ('$name $sname', '$persnmr', '$level', '{$data['place']}', '".date('Y-m-d')."', '$info')");
+            ";/*
+            if (mail($email, "Tack för bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {*/
+                $req = $db->prepare("INSERT INTO clients (name, persnmr, level, place, ddate, info) VALUES ('$name $sname', '$persnmr', '$level', '{$data['place']}', '".date('Y-m-d')."', '$info')");
                 $req->execute();
-                header ("location: ../../index.php?tack");
-            /*}
+                header ("location: ../../index.php?tack");/*
+            }
             else {
                 header ("location: ../../index.php?fel");
             }*/
@@ -146,27 +147,26 @@
         public function getPrice(){return $this->price;}
 
         function level_all($level) {
-            include "conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_");
-            $req->execute();
-            $this->show_admin_level($req, $level);
+            $sql = "SELECT * FROM {$level}_";
+            $this->show_admin_level($sql, $level);
         }
 
         function sort($level, $sort) {
-            include "conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY $sort");
-            $req->execute();
-            $this->show_admin_level($req, $level);
+            $sql = "SELECT * FROM {$level}_ ORDER BY $sort";
+            $this->show_admin_level($sql, $level);
         }
 
         function sort_desc($level, $sort) {
-            include "conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY $sort DESC");
-            $req->execute();
-            $this->show_admin_level($req, $level);
+            $sql = "SELECT * FROM {$level}_ ORDER BY $sort DESC";
+            $this->show_admin_level($sql, $level);
         }
         
-        function show_admin_level($req, $level) {
+        function show_admin_level($sql, $level) {
+            include "conn.php";
+            $req = $db->prepare($sql);
+            $req->execute();
+
+            // form to add new line
             echo "
                 <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='formAdd tr' id='formAdd'>
                     <span class='td'><input name='date' type='date' required></span>
@@ -181,6 +181,7 @@
                     <span class='th th{$level}' id='sortprice'>PRIS <i id='caretdownprice' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupprice' class='fa fa-caret-up' aria-hidden='true'></i></span>
                 </div>";
 
+            // 2 lines - info and form to change the info
             while ($data=$req->fetch()) {
                 echo "
                 <div class='tr'>
