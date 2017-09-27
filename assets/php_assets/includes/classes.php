@@ -176,9 +176,9 @@
                 </form>
                 <br>
                 <div class='tr'>
-                    <span class='th th{$level}' id='sortdate'>DATUM <i id='caretdowndate' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupdate' class='fa fa-caret-up' aria-hidden='true'></i></span>
-                    <span class='th th{$level}' id='sortplace'>PLATS <i id='caretdownplace' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupplace' class='fa fa-caret-up' aria-hidden='true'></i></span>
-                    <span class='th th{$level}' id='sortprice'>PRIS <i id='caretdownprice' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupprice' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortdate'>DATUM <i id='caretdown{$level}date' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretup{$level}date' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortplace'>PLATS <i id='caretdown{$level}place' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretup{$level}place' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortprice'>PRIS <i id='caretdown{$level}price' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretup{$level}price' class='fa fa-caret-up' aria-hidden='true'></i></span>
                 </div>";
 
             // 2 lines - info and form to change the info
