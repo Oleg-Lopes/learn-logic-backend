@@ -57,13 +57,27 @@
                 } else { $(".form").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN LIST
 
+            sortDir = new Array();
+            sortDir[0] = "date";
+            sortDir[1] = "place";
+            sortDir[2] = "price";
             $(".table").on('click', '.th', function () {
                 var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
                 var sortId = $(this).attr("id").split("sort"); // sort after [1]
-                $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
-                    $(".fa-caret-down").hide();
-                    $("#caret"+sortId[1]).toggle();
-                });
+                var num = jQuery.inArray(sortId[1], sortDir);
+                if (num > -1) {
+                    $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
+                        $(".fa-caret-down").hide();
+                        $("#caretdown"+sortId[1]).toggle();
+                        sortDir = ['0', '0', '0'];
+                    });
+                } else {
+                    $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort_desc.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
+                        $(".fa-caret-down").hide();
+                        $("#caretup"+sortId[1]).toggle();
+                        sortDir = ['date', 'place', 'price'];
+                    });
+                }
             });
         });
     </script>

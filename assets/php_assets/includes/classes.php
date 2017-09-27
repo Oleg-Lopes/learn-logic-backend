@@ -150,6 +150,13 @@
             $req->execute();
             $this->show_admin_level($req, $level);
         }
+
+        function sort_desc($level, $sort) {
+            include "conn.php";
+            $req = $db->prepare("SELECT * FROM {$level}_ ORDER BY $sort DESC");
+            $req->execute();
+            $this->show_admin_level($req, $level);
+        }
         
         function show_admin_level($req, $level) {
             echo "
@@ -161,9 +168,9 @@
                 </form>
                 <br>
                 <div class='tr'>
-                    <span class='th th{$level}' id='sortdate'>DATUM <i id='caretdate' class='fa fa-caret-down' aria-hidden='true'></i></span>
-                    <span class='th th{$level}' id='sortplace'>PLATS <i id='caretplace' class='fa fa-caret-down' aria-hidden='true'></i></span>
-                    <span class='th th{$level}' id='sortprice'>PRIS <i id='caretprice' class='fa fa-caret-down' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortdate'>DATUM <i id='caretdowndate' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupdate' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortplace'>PLATS <i id='caretdownplace' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupplace' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sortprice'>PRIS <i id='caretdownprice' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretupprice' class='fa fa-caret-up' aria-hidden='true'></i></span>
                 </div>";
 
             while ($data=$req->fetch()) {
