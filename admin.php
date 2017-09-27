@@ -57,10 +57,7 @@
                 } else { $(".form").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN LIST
 
-            sortDir = new Array();
-            sortDir[0] = "date";
-            sortDir[1] = "place";
-            sortDir[2] = "price";
+            var sortDir = ['date', 'place', 'price'];
             $(".table").on('click', '.th', function () {
                 var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
                 var sortId = $(this).attr("id").split("sort"); // sort after [1]
