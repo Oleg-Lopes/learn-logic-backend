@@ -1,20 +1,6 @@
 <?php
     class level {
-        public function setName($name){$this->name=$name;}
-        public function getName(){return $this->name;}
-        public function setSName($sname){$this->sname=$sname;}
-        public function getSName(){return $this->sname;}
-        public function setPersnmr($persnmr){$this->persnmr=$persnmr;}
-        public function getPersnmr(){return $this->persnmr;}
-        public function setTel($tel){$this->tel=$tel;}
-        public function getTel(){return $this->tel;}
-        public function setEmail($email){$this->email=$email;}
-        public function getEmail(){return $this->email;}
-        public function setFirm($firm){$this->firm=$firm;}
-        public function getFirm(){return $this->firm;}
-        public function setComment($comment){$this->comment=$comment;}
-        public function getComment(){return $this->comment;}
-
+        
         function level_15($level) {
             $sql = "SELECT * FROM {$level}_ ORDER BY id DESC LIMIT 2";
             $this->show_level($sql, $level);
@@ -61,15 +47,7 @@
             }
         }
 
-        function boka($level, $id) {
-            $name = $this->getName();
-            $sname = $this->getSName();
-            $persnmr = $this->getPersnmr();
-            $tel = $this->getTel();
-            $email = $this->getEmail();
-            $firm = $this->getFirm();
-            $comment = $this->getComment();
-
+        function boka($level, $id, $name, $sname, $persnmr, $tel, $email, $firm, $comment) {
             include "includes/conn.php";
             $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '$id'");
             $req->execute();

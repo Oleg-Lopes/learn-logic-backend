@@ -3,23 +3,17 @@
     include "includes/classes.php";
 
     $level = new level();
-    $level->setName($_POST['name']);
-    $level->setSName($_POST['sname']);
-    $level->setPersnmr($_POST['persnmr']);
-    $level->setTel($_POST['tel']);
-    $level->setEmail($_POST['email']);
 
     if (empty($_POST['firm'])) {
-        $level->setFirm("Ingen");
-    }
-    else {
-        $level->setFirm($_POST['firm']);
+        $firm = "Ingen";
+    } else {
+        $firm = $_POST['firm'];
     }
 
     if (empty($_POST['comment'])) {
-        $level->setComment("Inga");
+        $comment = "Inga";
     } else {
-        $level->setComment($_POST['comment']);
+        $comment = $_POST['comment'];
     }
     
-    $level->boka($_GET['level'], $_GET['id']);
+    $level->boka($_GET['level'], $_GET['id'], $_POST['name'], $_POST['sname'], $_POST['persnmr'], $_POST['tel'], $_POST['email'], $firm, $comment);
