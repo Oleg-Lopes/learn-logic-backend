@@ -45,7 +45,9 @@
                         <input name='sname' type='text' placeholder='Efternan*' required>
                     </span>
                     <span class='td'>
-                        <input name='persnmr' type='number' placeholder='yymmddnnnn*' required>
+                        <input name='persnmr' type='number' placeholder='yymmddnnnn*' required oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                        type = 'number'
+                        maxlength = '10'>
                         <input name='tel' type='number' placeholder='0123456789*' required>
                     </span>
                     <span class='td'>
@@ -70,7 +72,7 @@
             $comment = $this->getComment();
 
             include "includes/conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '{$id}' ORDER BY id DESC");
+            $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '{$id}'");
             $req->execute();
             $data=$req->fetch();
 
