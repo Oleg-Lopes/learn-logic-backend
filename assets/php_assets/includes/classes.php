@@ -37,9 +37,9 @@
                     <span class='td'>{$data['date']}</span>
                     <span class='td'>{$data['place']}</span>
                     <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$data['id']}' class='boka' style='background:green'>Boka</button></span>
+                    <span class='td'><button id='{$level}_{$data['id']}' class='boka' style='background:green'>Boka</button></span>
                 </div>
-                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$data['id']}form'>
+                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}form'>
                     <span class='td'>
                         <input name='name' type='text' placeholder='Förnamn*' required>
                         <input name='sname' type='text' placeholder='Efternan*' required>
