@@ -27,7 +27,7 @@ html {
   cursor: pointer;
 }
 
-.form {
+.form-boka, .form-change {
   display: none;
 }
 

@@ -17,7 +17,7 @@
         $(document).ready(function () {
             <?php // SHOW THE LIST YOU OPERATED WITH LAST
                 if (isset($_GET['level']) && ($_GET['level']) > 0 && ($_GET['level']) < 4) {
-                    echo "$('#level'+{$_GET['level']}).show();";
+                    echo "$('#level-'+{$_GET['level']}).show();";
                 }
             ?> // SHOW THE LIST YOU OPERATED WITH LAST
 
@@ -25,23 +25,23 @@
             var sortDir = ['date', 'place', 'price']; // SORT LISTS BY ARRAY
 
             $(".nav-level").click(function () { // SHOW/HIDE LISTS
-                var level = $(this).attr("id").split("nav-level");
-                if ($("#level"+level[1]).is(":hidden")) {
+                var level = $(this).attr("id").split("nav-level-");
+                if ($("#level-"+level[1]).is(":hidden")) {
                     $(".level").hide();
-                    $("#level"+level[1]).show();
-                } else { $("#level"+level[1]).toggle(); }
+                    $("#level-"+level[1]).show();
+                } else { $("#level-"+level[1]).toggle(); }
                 
                 sortDir = ['date', 'place', 'price']; // SORT LISTS RESET
             }); // SHOW/HIDE LISTS
 
 
 
-            $(".table").on('click', '.change', function () { // SHOW/HIDE FROM FOR EACH LINE IN LIST
-                var id = $(this).attr("id");
-                if ($("#"+id+"form").is(":hidden")) {
-                    $(".form").hide();
-                    $("#"+id+"form").css('display', 'table-row');
-                } else { $(".form").hide(); }
+            $(".table").on('click', '.btn-change', function () { // SHOW/HIDE FROM FOR EACH LINE IN LIST
+                var id = $(this).attr("id").split("-btn-change");
+                if ($("#"+id[0]+"-form-change").is(":hidden")) {
+                    $(".form-change").hide();
+                    $("#"+id[0]+"-form-change").css('display', 'table-row');
+                } else { $(".form-change").hide(); }
             }); // SHOW/HIDE FROM FOR EACH LINE IN LIST
 
 
@@ -71,16 +71,16 @@
 <body>
     <!-- START OF NAVIGATION THROUGH LEVELS -->
     <nav><ul>
-            <li id="nav-level1" class="nav-level">Level 1</li>
-            <li id="nav-level2" class="nav-level">Level 2</li>
-            <li id="nav-level3" class="nav-level">Level 3</li>
+            <li id="nav-level-1" class="nav-level">Level 1</li>
+            <li id="nav-level-2" class="nav-level">Level 2</li>
+            <li id="nav-level-3" class="nav-level">Level 3</li>
         </ul></nav>
     <!-- END OF NAVIGATION THROUGH LEVELS -->
     
 
 
     <!-- START OF LIST LEVEL 1 -->
-    <section id="level1" class="level"><div class="table">
+    <section id="level-1" class="level"><div class="table">
     <?php
         $level->level_all('1');
     ?></div>
@@ -90,7 +90,7 @@
 
 
     <!-- START OF LIST LEVEL 2 -->
-    <section id="level2" class="level"><div class="table">
+    <section id="level-2" class="level"><div class="table">
         <?php
             $level->level_all('2');
         ?></div>
@@ -100,7 +100,7 @@
 
 
     <!-- START OF LIST LEVEL 3 -->
-    <section id="level3" class="level"><div class="table">
+    <section id="level-3" class="level"><div class="table">
         <?php
             $level->level_all('3');
         ?></div>

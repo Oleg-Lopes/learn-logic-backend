@@ -16,35 +16,35 @@
         $(document).ready(function () {
             <?php // SHOW THE LIST YOU OPERATED WITH LAST
                 if (isset($_GET['level']) && ($_GET['level']) > 0 && ($_GET['level']) < 4) {
-                    echo "$('#level'+{$_GET['level']}).show();";
+                    echo "$('#level-'+{$_GET['level']}).show();";
                 }
             ?> // SHOW THE LIST YOU OPERATED WITH LAST
 
 
 
-            $(".nav_level").click(function () { // SHOW/HIDE LISTS
-                var level = $(this).attr("id").split("nav_level_");
-                if ($("#level"+level[1]).is(":hidden")) {
+            $(".nav-level").click(function () { // SHOW/HIDE LISTS
+                var level = $(this).attr("id").split("nav-level-");
+                if ($("#level-"+level[1]).is(":hidden")) {
                     $(".level").hide();
-                    $("#level"+level[1]).show();
-                } else { $("#level"+level[1]).toggle(); }
+                    $("#level-"+level[1]).show();
+                } else { $("#level-"+level[1]).toggle(); }
             }); // SHOW/HIDE LISTS
 
 
 
             $(".level").on('click', '.btn-boka', function () { // SHOW/HIDE FORM FOR EACH LINE IN LIST
-                var id = $(this).attr("id").split("btnShowForm");
-                if ($("#"+id[0]+"-form").is(":hidden")) {
-                    $(".form").hide();
-                    $("#"+id[0]+"-form").slideDown();
-                } else { $(".form").slideUp(); }
+                var id = $(this).attr("id").split("-btn-show-form-boka");
+                if ($("#"+id[0]+"-form-boka").is(":hidden")) {
+                    $(".form-boka").hide();
+                    $("#"+id[0]+"-form-boka").css('display', 'table-row');
+                } else { $(".form-boka").hide(); }
             }); // SHOW/HIDE FORM FOR EACH LINE IN LIST
 
 
 
             $(".showall").click(function () { // SHOW ALL LINES FOR EACH LIST
                 var showall = $(this).attr("id").split("showall");
-                $("#level"+showall[1]+" .table").load("assets/php_assets/level_all.php?level="+showall[1]);
+                $("#level"+showall[1]+" .table").load("assets/php-assets/level_all.php?level="+showall[1]);
                 $(this).hide();
             });// SHOW ALL LINES FOR EACH LIST
         });
@@ -53,16 +53,16 @@
 <body>
     <!-- START OF NAVIGATION THROUGH LEVELS -->
     <nav><ul>
-            <li id="nav_level_1" class="nav_level">Level 1</li>
-            <li id="nav_level_2" class="nav_level">Level 2</li>
-            <li id="nav_level_3" class="nav_level">Level 3</li>
+            <li id="nav-level-1" class="nav-level">Level 1</li>
+            <li id="nav-level-2" class="nav-level">Level 2</li>
+            <li id="nav-level-3" class="nav-level">Level 3</li>
         </ul></nav>
     <!-- END OF NAVIGATION THROUGH LEVELS -->
     
 
 
     <!-- START OF LIST LEVEL 1 -->
-    <section id="level1" class="level"><div class="table">
+    <section id="level-1" class="level"><div class="table">
         <?php
             $level->level_15('1');
         ?></div>
@@ -73,7 +73,7 @@
 
 
     <!-- START OF LIST LEVEL 2 -->
-    <section id="level2" class="level"><div class="table">
+    <section id="level-2" class="level"><div class="table">
         <?php
             $level->level_15('2');
         ?></div>
@@ -84,7 +84,7 @@
 
 
     <!-- START OF LIST LEVEL 3 -->
-    <section id="level3" class="level"><div class="table">
+    <section id="level-3" class="level"><div class="table">
         <?php
             $level->level_15('3');
         ?></div>

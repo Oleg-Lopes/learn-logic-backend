@@ -22,9 +22,9 @@
                     <span class='td'>{$data['date']}</span>
                     <span class='td'>{$data['place']}</span>
                     <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$level}-{$data['id']}-btnShowForm' class='btn-boka' style='background:green'>Boka</button></span>
+                    <span class='td'><button id='{$level}-{$data['id']}-btn-show-form-boka' class='btn-boka' style='background:green'>Boka</button></span>
                 </div>
-                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}-{$data['id']}-form'>
+                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='tr form-boka' id='{$level}-{$data['id']}-form-boka'>
                     <span class='td'>
                         <input name='name' type='text' placeholder='Förnamn*' required>
                         <input name='sname' type='text' placeholder='Efternan*' required>
@@ -141,7 +141,7 @@
 
             // form to add new line
             echo "
-                <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='formAdd tr' id='formAdd'>
+                <form action='assets/php_assets/admin_add.php?level={$level}' method='post' class='tr form-add' id='form-add'>
                     <span class='td'><input name='date' type='date' required></span>
                     <span class='td'><input name='place' type='text' placeholder='Plats' required></span>
                     <span class='td'><input name='price' type='number' placeholder='Pris' required></span>
@@ -161,11 +161,11 @@
                     <span class='td'>{$data['date']}</span>
                     <span class='td'>{$data['place']}</span>
                     <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$level}_{$data['id']}' class='change' style='background:yellow'>ÄNDRA</button></span>
+                    <span class='td'><button id='{$level}-{$data['id']}-btn-change' class='btn-change' style='background:yellow'>ÄNDRA</button></span>
                     <span class='td'><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button style='background:red'>TA BORT</button></a></span>
                 </div>
 
-                <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}form'>
+                <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='tr form-change' id='{$level}-{$data['id']}-form-change'>
                     <span class='td'><input name='date' type='date' value='{$data['date']}' required></span>
                     <span class='td'><input name='place' type='text' value='{$data['place']}' required></span>
                     <span class='td'><input name='price' type='number' value='{$data['price']}' required></span>
