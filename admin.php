@@ -16,13 +16,8 @@
     <script>
         $(document).ready(function () {
             <?php // SHOW THE LIST YOU OPERATED WITH LAST
-                if (isset($_GET['level'])) {
-                    echo "if ({$_GET['level']} == '1') {
-                        $('#level1').show();}
-                    else if ({$_GET['level']} == '2') {
-                        $('#level2').show();}
-                    else if ({$_GET['level']} == '3') {
-                        $('#level3').show();}";
+                if (isset($_GET['level']) && ($_GET['level']) > 0 && ($_GET['level']) < 4) {
+                    echo "$('#level'+{$_GET['level']}).show();";
                 }
             ?> // SHOW THE LIST YOU OPERATED WITH LAST
 
