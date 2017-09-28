@@ -22,9 +22,9 @@
                     <span class='td'>{$data['date']}</span>
                     <span class='td'>{$data['place']}</span>
                     <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$level}_{$data['id']}' class='boka' style='background:green'>Boka</button></span>
+                    <span class='td'><button id='{$level}-{$data['id']}-btnShowForm' class='btn-boka' style='background:green'>Boka</button></span>
                 </div>
-                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}form'>
+                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}-{$data['id']}-form'>
                     <span class='td'>
                         <input name='name' type='text' placeholder='Förnamn*' required>
                         <input name='sname' type='text' placeholder='Efternan*' required>
@@ -149,9 +149,9 @@
                 </form>
                 <br>
                 <div class='tr'>
-                    <span class='th th{$level}' id='sortdate'>DATUM <i id='caretdown{$level}date' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretup{$level}date' class='fa fa-caret-up' aria-hidden='true'></i></span>
-                    <span class='th th{$level}' id='sortplace'>PLATS <i id='caretdown{$level}place' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretup{$level}place' class='fa fa-caret-up' aria-hidden='true'></i></span>
-                    <span class='th th{$level}' id='sortprice'>PRIS <i id='caretdown{$level}price' class='fa fa-caret-down' aria-hidden='true'></i><i id='caretup{$level}price' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sort-date'>DATUM <i id='caret-down-{$level}-date' class='fa fa-caret-down' aria-hidden='true'></i><i id='caret-up-{$level}-date' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sort-place'>PLATS <i id='caret-down-{$level}-place' class='fa fa-caret-down' aria-hidden='true'></i><i id='caret-up-{$level}-place' class='fa fa-caret-up' aria-hidden='true'></i></span>
+                    <span class='th th{$level}' id='sort-price'>PRIS <i id='caret-down-{$level}-price' class='fa fa-caret-down' aria-hidden='true'></i><i id='caret-up-{$level}-price' class='fa fa-caret-up' aria-hidden='true'></i></span>
                 </div>";
 
             // 2 lines - info and form to change the info

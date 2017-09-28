@@ -32,11 +32,11 @@
 
 
 
-            $(".level").on('click', '.boka', function () { // SHOW/HIDE FORM FOR EACH LINE IN LIST
-                var id = $(this).attr("id");
-                if ($("#"+id+"form").is(":hidden")) {
+            $(".level").on('click', '.btn-boka', function () { // SHOW/HIDE FORM FOR EACH LINE IN LIST
+                var id = $(this).attr("id").split("btnShowForm");
+                if ($("#"+id[0]+"-form").is(":hidden")) {
                     $(".form").hide();
-                    $("#"+id+"form").slideDown();
+                    $("#"+id[0]+"-form").slideDown();
                 } else { $(".form").slideUp(); }
             }); // SHOW/HIDE FORM FOR EACH LINE IN LIST
 

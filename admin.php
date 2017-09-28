@@ -48,19 +48,19 @@
 
             $(".table").on('click', '.th', function () {
                 var sortLevel = $(this).attr("class").split("th"); // LEVEL [2]
-                var sortId = $(this).attr("id").split("sort"); // sort after date/place/price [1]
+                var sortId = $(this).attr("id").split("sort-"); // sort after date/place/price [1]
                 var num = jQuery.inArray(sortId[1], sortDir);
                 if (num > -1) { // min to max sort
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
                         $(".fa-caret-down").hide();
-                        $("#caretdown"+sortLevel[2]+sortId[1]).toggle();
+                        $("#caret-down-"+sortLevel[2]+"-"+sortId[1]).toggle();
                         sortDir = ['date', 'place', 'price']; // next click for all min to max sort
                         sortDir[num] = 0; // next click for this max to min sort
                     });
                 } else { // max to min sort
                     $("#level"+sortLevel[2]+" .table").load("assets/php_assets/admin_sort_desc.php?level="+sortLevel[2]+"&sort="+sortId[1], function () {
                         $(".fa-caret-down").hide();
-                        $("#caretup"+sortLevel[2]+sortId[1]).toggle();
+                        $("#caret-up-"+sortLevel[2]+"-"+sortId[1]).toggle();
                         sortDir = ['date', 'place', 'price']; // next click for all min to max sort
                     });
                 }
