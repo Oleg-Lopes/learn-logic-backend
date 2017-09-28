@@ -14,23 +14,12 @@
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
         $(document).ready(function () { // SHOW/HIDE LISTS
-            $("#nav_level_1").click(function () {
-                if ($("#level1").is(":hidden")) {
+            $(".nav_level").click(function () {
+                var level = $(this).attr("id").split("nav_level_");
+                if ($("#level"+level[1]).is(":hidden")) {
                     $(".level").hide();
-                    $("#level1").show();
-                } else { $("#level1").toggle(); }
-            });
-            $("#nav_level_2").click(function () {
-                if ($("#level2").is(":hidden")) {
-                    $(".level").hide();
-                    $("#level2").show();
-                } else { $("#level2").toggle(); }
-            });
-            $("#nav_level_3").click(function () {
-                if ($("#level3").is(":hidden")) {
-                    $(".level").hide();
-                    $("#level3").show();
-                } else { $("#level3").toggle(); }
+                    $("#level"+level[1]).show();
+                } else { $("#level"+level[1]).toggle(); }
             }); // SHOW/HIDE LISTS
 
 
@@ -63,9 +52,9 @@
 <body>
     <!-- START OF NAVIGATION THROUGH LEVELS -->
     <nav><ul>
-            <li id="nav_level_1">Level 1</li>
-            <li id="nav_level_2">Level 2</li>
-            <li id="nav_level_3">Level 3</li>
+            <li id="nav_level_1" class="nav_level">Level 1</li>
+            <li id="nav_level_2" class="nav_level">Level 2</li>
+            <li id="nav_level_3" class="nav_level">Level 3</li>
         </ul></nav>
     <!-- END OF NAVIGATION THROUGH LEVELS -->
     
