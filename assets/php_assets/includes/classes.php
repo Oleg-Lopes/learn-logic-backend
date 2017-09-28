@@ -172,7 +172,7 @@
                     <span class='td'><input name='date' type='date' required></span>
                     <span class='td'><input name='place' type='text' placeholder='Plats' required></span>
                     <span class='td'><input name='price' type='number' placeholder='Pris' required></span>
-                    <span class='td'><input name='submit' type='submit' value='ADD'></span>
+                    <span class='td'><button name='submit' type='submit' style='background:green'>ADD</button></span>
                 </form>
                 <br>
                 <div class='tr'>
@@ -188,8 +188,8 @@
                     <span class='td'>{$data['date']}</span>
                     <span class='td'>{$data['place']}</span>
                     <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$level}_{$data['id']}' class='change'>ÄNDRA</button></span>
-                    <span class='td'><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button>TA BORT</button></a></span>
+                    <span class='td'><button id='{$level}_{$data['id']}' class='change' style='background:yellow'>ÄNDRA</button></span>
+                    <span class='td'><a href='assets/php_assets/admin_delete.php?level={$level}&id={$data['id']}'><button style='background:red'>TA BORT</button></a></span>
                 </div>
 
                 <form action='assets/php_assets/admin_save.php?level={$level}&id={$data['id']}' method='post' class='form tr' id='{$level}_{$data['id']}form'>
