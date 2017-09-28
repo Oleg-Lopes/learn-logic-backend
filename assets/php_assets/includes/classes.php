@@ -204,37 +204,32 @@
         }
 
         function save($level, $id) {
-            include "conn.php";
             $date = $this->getDate();
             $place = $this->getPlace();
             $price = $this->getPrice();
             
-            $req = $db->prepare("UPDATE {$level}_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id");
-            $req->execute();
-
-            header("location: ../../admin.php?level={$level}");
+            $sql = "UPDATE {$level}_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id";
+            $this->sql($sql, $level);
         }
 
-        function delete($level, $id) {
-            include "conn.php";
-            
-            $req = $db->prepare("DELETE FROM {$level}_ WHERE id = $id");
-            $req->execute();
-
-            header("location: ../../admin.php?level={$level}");
-
+        function delete($level, $id) {            
+            $sql = "DELETE FROM {$level}_ WHERE id = $id";
+            $this->sql($sql, $level);
         }
 
         function add($level) {
-            include "conn.php";
             $date = $this->getDate();
             $place = $this->getPlace();
             $price = $this->getPrice();
             
-            $req = $db->prepare("INSERT INTO {$level}_ (date, place, price) VALUES ('{$date}', '{$place}', '{$price}')");
+            $sql = "INSERT INTO {$level}_ (date, place, price) VALUES ('{$date}', '{$place}', '{$price}')";
+            $this->sql($sql, $level);
+        }
+
+        function sql($sql, $level) {
+            include "conn.php";
+            $req = $db->prepare($sql);
             $req->execute();
-
             header("location: ../../admin.php?level={$level}");
-
         }
     }
