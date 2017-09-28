@@ -34,18 +34,11 @@
 
 
 
-            $("#showall1").click(function () { // SHOW ALL LINES FOR EACH LIST
-                $("#level1 .table").load("assets/php_assets/level_all.php?level=1");
+            $(".showall").click(function () { // SHOW ALL LINES FOR EACH LIST
+                var showall = $(this).attr("id").split("showall");
+                $("#level"+showall[1]+" .table").load("assets/php_assets/level_all.php?level="+showall[1]);
                 $(this).hide();
-            });
-            $("#showall2").click(function () {
-                $("#level2 .table").load("assets/php_assets/level_all.php?level=2");
-                $(this).hide();
-            });
-            $("#showall3").click(function () {
-                $("#level3 .table").load("assets/php_assets/level_all.php?level=3");
-                $(this).hide();
-            }); // SHOW ALL LINES FOR EACH LIST
+            });// SHOW ALL LINES FOR EACH LIST
         });
     </script>
 </head>
@@ -65,7 +58,7 @@
         <?php
             $level->level_15('1');
         ?></div>
-        <button id="showall1">Show all</button>
+        <button id="showall1" class="showall">Show all</button>
     </section>
     <!-- END OF LIST LEVEL 1 -->
 
@@ -76,7 +69,7 @@
         <?php
             $level->level_15('2');
         ?></div>
-        <button id="showall2">Show all</button>
+        <button id="showall2" class="showall">Show all</button>
     </section>
     <!-- END OF LIST LEVEL 2 -->
 
@@ -87,7 +80,7 @@
         <?php
             $level->level_15('3');
         ?></div>
-        <button id="showall3">Show all</button>
+        <button id="showall3" class="showall">Show all</button>
     </section>
     <!-- END OF LIST LEVEL 3 -->
 
