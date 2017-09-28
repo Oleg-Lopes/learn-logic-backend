@@ -25,9 +25,13 @@
             $(".nav-level").click(function () { // SHOW/HIDE LISTS
                 var level = $(this).attr("id").split("nav-level-");
                 if ($("#level-"+level[1]).is(":hidden")) {
+                    $(".form-boka").hide();
                     $(".level").hide();
                     $("#level-"+level[1]).show();
-                } else { $("#level-"+level[1]).toggle(); }
+                } else { 
+                    $(".form-boka").hide();
+                    $("#level-"+level[1]).toggle();
+                }
             }); // SHOW/HIDE LISTS
 
 
