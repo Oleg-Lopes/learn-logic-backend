@@ -106,6 +106,6 @@
         ?></div>
     </section>
     <!-- END OF LIST LEVEL 3 -->
-    <a href="index.php">to Level 1</a>
+    <a href="index.php?level=1">to Level 1</a>
 </body>
 </html>

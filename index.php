@@ -13,8 +13,16 @@
     <script src="https://use.fontawesome.com/433d64420a.js"></script>
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script>
-        $(document).ready(function () { // SHOW/HIDE LISTS
-            $(".nav_level").click(function () {
+        $(document).ready(function () {
+            <?php // SHOW THE LIST YOU OPERATED WITH LAST
+                if (isset($_GET['level']) && ($_GET['level']) > 0 && ($_GET['level']) < 4) {
+                    echo "$('#level'+{$_GET['level']}).show();";
+                }
+            ?> // SHOW THE LIST YOU OPERATED WITH LAST
+
+
+
+            $(".nav_level").click(function () { // SHOW/HIDE LISTS
                 var level = $(this).attr("id").split("nav_level_");
                 if ($("#level"+level[1]).is(":hidden")) {
                     $(".level").hide();
@@ -94,6 +102,6 @@
     ?>
     <!-- END OF THX BOX -->
 
-    <a href="admin.php">ADMIN</a>
+    <a href="admin.php?level=1">ADMIN</a>
 </body>
 </html>

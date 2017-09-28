@@ -21,7 +21,6 @@
         }
         
         function level_all($level) {
-            include "conn.php";
             $sql = "SELECT * FROM {$level}_ ORDER BY id DESC";
             $this->show_level($sql, $level);
         }
@@ -72,7 +71,7 @@
             $comment = $this->getComment();
 
             include "includes/conn.php";
-            $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '{$id}'");
+            $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '$id'");
             $req->execute();
             $data=$req->fetch();
 
@@ -141,12 +140,6 @@
     }
 
     class admin_level {
-        public function setDate($date){$this->date=$date;}
-        public function getDate(){return $this->date;}
-        public function setPlace($place){$this->place=$place;}
-        public function getPlace(){return $this->place;}
-        public function setPrice($price){$this->price=$price;}
-        public function getPrice(){return $this->price;}
 
         function level_all($level) {
             $sql = "SELECT * FROM {$level}_";
@@ -204,12 +197,12 @@
         }
 
         function save($level, $id, $date, $place, $price) {
-            $sql = "UPDATE {$level}_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id";
+            $sql = "UPDATE {$level}_ SET date = '$date', place = '$place', price = '$price' WHERE id = '$id'";
             $this->sql($sql, $level);
         }
 
         function delete($level, $id) {            
-            $sql = "DELETE FROM {$level}_ WHERE id = $id";
+            $sql = "DELETE FROM {$level}_ WHERE id = '$id'";
             $this->sql($sql, $level);
         }
 
