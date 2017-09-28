@@ -203,11 +203,7 @@
             }
         }
 
-        function save($level, $id) {
-            $date = $this->getDate();
-            $place = $this->getPlace();
-            $price = $this->getPrice();
-            
+        function save($level, $id, $date, $place, $price) {
             $sql = "UPDATE {$level}_ SET date = '$date', place = '$place', price = '$price' WHERE id = $id";
             $this->sql($sql, $level);
         }
@@ -217,12 +213,8 @@
             $this->sql($sql, $level);
         }
 
-        function add($level) {
-            $date = $this->getDate();
-            $place = $this->getPlace();
-            $price = $this->getPrice();
-            
-            $sql = "INSERT INTO {$level}_ (date, place, price) VALUES ('{$date}', '{$place}', '{$price}')";
+        function add($level, $date, $place, $price) {
+            $sql = "INSERT INTO {$level}_ (date, place, price) VALUES ('$date', '$place', '$price')";
             $this->sql($sql, $level);
         }
 
