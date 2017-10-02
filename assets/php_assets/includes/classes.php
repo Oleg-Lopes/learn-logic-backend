@@ -30,10 +30,10 @@
                         <input name='sname' type='text' placeholder='Efternan*' required>
                     </span>
                     <span class='td'>
-                        <input name='persnmr' type='number' placeholder='yymmddnnnn*' required oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                        <input name='persnmr' type='text' pattern='[0-9]*' placeholder='persnmr. ååmmddnnnn*' required oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
                         type = 'number'
                         maxlength = '10'>
-                        <input name='tel' type='number' placeholder='0123456789*' required>
+                        <input name='tel' type='text' pattern='[0-9]*' placeholder='tel. 0700557799*' required>
                     </span>
                     <span class='td'>
                         <input name='email' type='email' placeholder='Email*' required>
@@ -47,7 +47,7 @@
             }
         }
 
-        function boka($level, $id, $name, $sname, $persnmr, $tel, $email, $firm, $comment) {
+        function boka($level, $id, $name, $sname, $persnmr, $tel, $email, $firm, $comment, $bokdate) {
             include "includes/conn.php";
             $req = $db->prepare("SELECT * FROM {$level}_ WHERE id = '$id'");
             $req->execute();
@@ -57,7 +57,8 @@
             $headers .= "Content-type: text/html; charset=iso-8859-1\r\n";
 
             $textToClient = "
-                <h1>Nivå: {$level}</h1>
+                <h1>TACK FÖR DIN BOKNING!</h1>
+                <h2>Nivå: {$level}</h2>
                 <br>
                 <strong>Plats: </strong>{$data['place']}<br>
                 <strong>Datum: </strong>{$data['date']}<br>
@@ -70,11 +71,13 @@
                 <strong>Email: </strong>{$email}<br>
 
                 <strong>Firm: </strong>{$firm}<br>
-                <strong>Övrigt: </strong>{$comment}<br>
+                <strong>Övrigt: </strong>{$comment}<br><br>
+                <strong>Boknings datum: </strong>{$bokdate}<br>
             ";
 
             $textToFirm = "
-                <h1>Nivå: {$level}</h1>
+                <h1>EN NY BOKNING!</h1>
+                <h2>Nivå: {$level}</h2>
                 <br>
                 <strong>Plats: </strong>{$data['place']}<br>
                 <strong>Datum: </strong>{$data['date']}<br>
@@ -87,7 +90,8 @@
                 <strong>Email: </strong>{$email}<br>
 
                 <strong>Firm: </strong>{$firm}<br>
-                <strong>Övrigt: </strong>{$comment}<br>
+                <strong>Övrigt: </strong>{$comment}<br><br>
+                <strong>Boknings datum: </strong>{$bokdate}<br>
             ";
 
             $info = "
@@ -105,9 +109,11 @@
 
                 Firm: {$firm}
                 Övrigt: {$comment}
+                Boknings datum: {$bokdate}
             ";/*
-            if (mail($email, "Tack för bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {*/
-                $req = $db->prepare("INSERT INTO clients (name, persnmr, level, place, ddate, info) VALUES ('$name $sname', '$persnmr', '$level', '{$data['place']}', '".date('Y-m-d')."', '$info')");
+            if (mail($email, "Tack för din bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {*/
+                $req = $db->prepare("INSERT INTO clients (name, persnmr, tel, level, place, price, date, bokdate, info) 
+                                    VALUES ('$name $sname', '$persnmr', '$tel', '$level', '{$data['place']}', '{$data['price']}', '{$data['date']}', CURDATE(), '$info')");
                 $req->execute();
                 header ("location: ../../index.php?tack");/*
             }
@@ -194,5 +200,22 @@
             $req = $db->prepare($sql);
             $req->execute();
             header("location: ../../admin.php?level={$level}");
+        }
+    }
+
+    class csv {
+
+        function csv() {
+            $name = "Oleg";
+            $sname = "Lopes";
+            $place = "Slussen";
+            $FileName = $name."-".$sname."-".date("d-m-Y").".csv";
+            header("Content-Type: application/csv");
+            header("Content-Disposition: attachment; filename=$FileName");
+            $content = "$name\n";
+            $content .= "$sname\n";
+            $content .= "$place\n";
+            echo $content;
+            exit();
         }
     }
