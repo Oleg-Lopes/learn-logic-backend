@@ -205,7 +205,7 @@
 
     class csv {
 
-        function csv() {
+        function csv_save() {
             $name = "Oleg";
             $sname = "Lopes";
             $place = "Slussen";
