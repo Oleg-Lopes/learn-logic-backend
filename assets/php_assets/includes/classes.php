@@ -110,16 +110,16 @@
                 Firm: {$firm}
                 Övrigt: {$comment}
                 Boknings datum: {$bokdate}
-            ";/*
-            if (mail($email, "Tack för din bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {*/
+            ";
+            if (mail($email, "Tack för din bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {
                 $req = $db->prepare("INSERT INTO clients (name, persnmr, tel, level, place, price, date, bokdate, info) 
                                     VALUES ('$name $sname', '$persnmr', '$tel', '$level', '{$data['place']}', '{$data['price']}', '{$data['date']}', CURDATE(), '$info')");
                 $req->execute();
-                header ("location: ../../index.php?tack");/*
+                header ("location: ../../index.php?tack");
             }
             else {
                 header ("location: ../../index.php?fel");
-            }*/
+            }
         }
     }
 
