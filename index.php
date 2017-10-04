@@ -103,6 +103,9 @@
         if (isset($_GET['tack'])) {
             echo "<h2>TACK FOR DIN BOKNING!</h2>";
         }
+        if (isset($_GET['fel'])) {
+            echo "<h2>NÅT FICK FEL!</h2>";
+        }
     ?>
     <!-- END OF THX BOX -->
 
