@@ -16,4 +16,4 @@
         $comment = $_POST['comment'];
     }
     
-    $level->boka($_GET['level'], $_GET['id'], $_POST['name'], $_POST['sname'], $_POST['persnmr'], $_POST['tel'], $_POST['email'], $firm, $comment, date("d-m-Y"));
+    $level->boka($_GET['level'], $_GET['id'], $_POST['name'], $_POST['sname'], $_POST['persnmr'], $_POST['tel'], $_POST['email'], $firm, $comment);
