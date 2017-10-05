@@ -10,8 +10,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Level 1</title>
     <script src="https://use.fontawesome.com/433d64420a.js"></script>
-    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="assets/css/index.css">
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
+    <script src="assets/scripts/jquery-ui.min.js"></script>
     <script src="assets/scripts/index-scripts.js"></script>
     <script>
         $(document).ready(function () {
