@@ -2,12 +2,12 @@
     class level {
         
         function level_15($level) {
-            $sql = "SELECT * FROM {$level}_ ORDER BY id DESC LIMIT 2";
+            $sql = "SELECT * FROM {$level}_ ORDER BY date LIMIT 2";
             $this->show_level($sql, $level);
         }
         
         function level_all($level) {
-            $sql = "SELECT * FROM {$level}_ ORDER BY id DESC";
+            $sql = "SELECT * FROM {$level}_ ORDER BY date";
             $this->show_level($sql, $level);
         }
 
@@ -16,13 +16,21 @@
             $req = $db->prepare($sql);
             $req->execute();
             
+            echo "
+            <div class='tr'>
+                <span class='th' id='sort-date'>DATUM</span>
+                <span class='th' id='sort-place'>PLATS</span>
+                <span class='th' id='sort-price'>PRIS</span>
+            </div>
+            ";
+
             while ($data=$req->fetch()) {
                 echo "
                 <div class='tr'>
                     <span class='td'>{$data['date']}</span>
                     <span class='td'>{$data['place']}</span>
                     <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$level}-{$data['id']}-btn-show-form-boka' class='btn-boka' style='background:green'>Boka</button></span>
+                    <span class='td'><button id='{$level}-{$data['id']}-btn-show-form-boka' class='btn-boka'>Boka</button></span>
                 </div>
                 <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='tr form-boka' id='{$level}-{$data['id']}-form-boka'>
                     <span class='td'>
@@ -40,7 +48,7 @@
                         <input name='firm' type='text' placeholder='Företag'>
                     </span>
                     <span class='td'>
-                        <textarea name='comment' placeholder='Övrigt'></textarea>
+                        <input name='comment' type='text' placeholder='Övrigt'>
                         <input name='submit' type='submit' value='BOKA'>
                     </span>
                 </form>";
@@ -110,23 +118,23 @@
                 Firm: {$firm}
                 Övrigt: {$comment}
                 Boknings datum: {$bokdate}
-            ";
+            ";/*
             if (mail($email, "Tack för din bokning!", $textToClient, $headers) && mail("pokskok@yandex.ru", "En ny bokning!", $textToFirm, $headers)) {
-                $req = $db->prepare("INSERT INTO clients (name, persnmr, tel, level, place, price, date, bokdate, info) 
+                */$req = $db->prepare("INSERT INTO clients (name, persnmr, tel, level, place, price, date, bokdate, info) 
                                     VALUES ('$name $sname', '$persnmr', '$tel', '$level', '{$data['place']}', '{$data['price']}', '{$data['date']}', CURDATE(), '$info')");
                 $req->execute();
-                header ("location: ../../index.php?tack");
+                header ("location: ../../index.php?tack");/*
             }
             else {
                 header ("location: ../../index.php?fel");
-            }
+            }*/
         }
     }
 
     class admin_level {
 
         function level_all($level) {
-            $sql = "SELECT * FROM {$level}_";
+            $sql = "SELECT * FROM {$level}_ ORDER BY date";
             $this->show_admin_level($sql, $level);
         }
 

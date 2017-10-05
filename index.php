@@ -8,9 +8,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="./assets/css/index.css">
     <title>Level 1</title>
     <script src="https://use.fontawesome.com/433d64420a.js"></script>
+    <link rel="stylesheet" href="./assets/css/index.css">
     <script src="assets/scripts/jquery-3.2.1.min.js"></script>
     <script src="assets/scripts/index-scripts.js"></script>
     <script>

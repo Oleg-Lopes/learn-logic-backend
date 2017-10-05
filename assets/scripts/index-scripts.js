@@ -1,4 +1,6 @@
 $(document).ready(function() {
+    var sortDir = ["date", "place", "price"]; // SORT LISTS BY ARRAY
+
     $(".nav-level").click(function() {
         // SHOW/HIDE LISTS
         var level = $(this)
@@ -21,9 +23,9 @@ $(document).ready(function() {
             .split("-btn-show-form-boka");
         if ($("#" + id[0] + "-form-boka").is(":hidden")) {
             $(".form-boka").hide();
-            $("#" + id[0] + "-form-boka").css("display", "table-row");
+            $("#" + id[0] + "-form-boka").slideDown();
         } else {
-            $(".form-boka").hide();
+            $(".form-boka").slideUp();
         }
     }); // SHOW/HIDE FORM FOR EACH LINE IN LIST
 

@@ -15,3 +15,7 @@ section {
 .fa-caret-down, .fa-caret-up {
   display: none;
 }
+
+.th {
+  cursor: pointer;
+}

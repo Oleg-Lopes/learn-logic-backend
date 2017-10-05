@@ -32,6 +32,7 @@ $(document).ready(function() {
     }); // SHOW/HIDE FROM FOR EACH LINE IN LIST
 
     $(".table").on("click", ".th", function() {
+        // SORT LISTS BY ..
         var sortLevel = $(this)
             .attr("class")
             .split("th"); // LEVEL [2]
