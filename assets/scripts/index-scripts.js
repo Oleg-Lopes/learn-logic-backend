@@ -16,8 +16,9 @@ $(document).ready(function() {
         }
     });*/ $(
         ".nav-level"
-    ).click(function() {
+    ).click(function(event) {
         // SHOW/HIDE LISTS
+        event.preventDefault();
         var level = $(this)
             .attr("id")
             .split("nav-level-");
@@ -31,12 +32,10 @@ $(document).ready(function() {
         } else if ($("#level-" + level[1]).is(":hidden")) {
             $(".form-boka").hide(); // hide forms
             if (level[1] == 1) {
-                $(".level").hide();
                 // show 1 while on 2 or 2
                 // all slide to right
                 var direction = "left";
             } else if (level[1] == 3) {
-                $(".level").hide();
                 // show 3 while on 1 or 2
                 // all slide to left
                 var direction = "right";
