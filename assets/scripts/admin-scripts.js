@@ -14,6 +14,13 @@ $(document).ready(function() {
             $(".form-change").hide();
             $("#level-" + level[1]).toggle();
         }
+        if ($("#level-" + level[1]).is(":visible")) {
+            $("#level-" + level[1] + " div").load(
+                "assets/php_assets/level_all.php?admin=true&level=" + level[1]
+            );
+        }
+        $(".nav-level").css({ background: "none" });
+        $("#nav-level-" + level[1]).css({ background: "red" });
 
         sortDir = ["date", "place", "price"]; // SORT LISTS RESET
     }); // SHOW/HIDE LISTS

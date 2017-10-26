@@ -1,6 +1,4 @@
 $(document).ready(function() {
-    var sortDir = ["date", "place", "price"]; // SORT LISTS BY ARRAY // SHOW/HIDE LISTS
-
     /*$(".nav-level").click(function() {
         // SHOW/HIDE LISTS
         var level = $(this)
@@ -58,6 +56,16 @@ $(document).ready(function() {
             );
         } else if ($("#level-" + level[1]).is(":visible")) {
             $(".form-boka").hide(); // hide forms
+            $(".form-boka-mob")
+                .css({
+                    transform: "rotateY(0deg)"
+                })
+                .hide();
+            $(".front")
+                .show()
+                .css({
+                    transform: "rotateY(0deg)"
+                });
             $("#level-" + level[1]).slideUp(); // this level slide Up
         }
     });
@@ -74,6 +82,33 @@ $(document).ready(function() {
             $(".form-boka").slideUp();
         }
     }); // SHOW/HIDE FORM FOR EACH LINE IN LIST
+
+    $(".level").on("click", ".btn-boka-mob", function() {
+        // SHOW/HIDE FORM FOR EACH LINE IN LIST MOBILE
+        var id = $(this)
+            .attr("id")
+            .split("-btn-show-form-boka");
+        $(".form-boka-mob")
+            .css({
+                transform: "rotateY(0deg)"
+            })
+            .hide();
+        $(".front")
+            .show()
+            .css({
+                transform: "rotateY(0deg)"
+            });
+        $("#front-" + id[0])
+            .css({
+                transform: "rotateY(180deg)"
+            })
+            .fadeOut("fast")
+            .delay(500)
+            .queue(function() {
+                $("#" + id[0] + "-form-boka").show();
+            })
+            .dequeue();
+    }); // SHOW/HIDE FORM FOR EACH LINE IN LIST MOBILE
 
     $(".showall").click(function() {
         // SHOW ALL LINES FOR EACH LIST

@@ -1,57 +1,101 @@
 <?php
-    class level {
+    class mobile_level {
+        function get_class() {
+            $class = new level();
+            return $class;
+        }
         
         function level_15($level) {
-            $sql = "SELECT * FROM {$level}_ ORDER BY date LIMIT 2";
-            $this->show_level($sql, $level);
+            $this->get_class()->level_15($level, true);
         }
         
         function level_all($level) {
+            $this->get_class()->level_all($level, true);
+        }
+        
+    }
+
+    class level {
+        
+        public function level_15($level, $mobile=false) {
+            $sql = "SELECT * FROM {$level}_ ORDER BY date LIMIT 10";
+            $this->show_level($sql, $level, $mobile);
+        }
+        
+        function level_all($level, $mobile=false) {
             $sql = "SELECT * FROM {$level}_ ORDER BY date";
-            $this->show_level($sql, $level);
+            $this->show_level($sql, $level, $mobile);
         }
 
-        function show_level($sql, $level) {
+        function show_level($sql, $level, $mobile) {
             include "conn.php";
             $req = $db->prepare($sql);
             $req->execute();
             
-            echo "
-            <div class='tr'>
-                <span class='th' id='sort-date'>DATUM</span>
-                <span class='th' id='sort-place'>PLATS</span>
-                <span class='th' id='sort-price'>PRIS</span>
-            </div>
-            ";
-
-            while ($data=$req->fetch()) {
+            if ($mobile) {
+                while ($data=$req->fetch()) {
+                    echo "
+                    <div class='tr tr-mob'>
+                        <div class='front' id='front-{$level}-{$data['id']}'>
+                            <h3>LEVEL : $level</h3>
+                            <br>
+                            <p class='td'>PLATS : {$data['place']}</p>
+                            <p class='td'>DATUM : {$data['date']}</p>
+                            <p class='td'>PRIS : {$data['price']}</p>
+                            <br>
+                            <button id='{$level}-{$data['id']}-btn-show-form-boka' class='btn-boka-mob'>Boka</button>
+                        </div>
+                        <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='form-boka-mob' id='{$level}-{$data['id']}-form-boka'>
+                            <input name='name' type='text' placeholder='Förnamn*' required>
+                            <input name='sname' type='text' placeholder='Efternan*' required>
+                            <input name='persnmr' type='text' pattern='[0-9]*' placeholder='persnmr. ååmmddnnnn*' required oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);' type = 'number' maxlength = '10'>
+                            <input name='tel' type='text' pattern='[0-9]*' placeholder='tel. 0700557799*' required>
+                            <input name='email' type='email' placeholder='Email*' required>
+                            <input name='firm' type='text' placeholder='Företag'>
+                            <input name='comment' type='text' placeholder='Övrigt'>
+                            <input name='submit' type='submit' value='BOKA'>
+                        </form>
+                    </div>
+                    ";
+                }
+            } else {
                 echo "
                 <div class='tr'>
-                    <span class='td'>{$data['date']}</span>
-                    <span class='td'>{$data['place']}</span>
-                    <span class='td'>{$data['price']}</span>
-                    <span class='td'><button id='{$level}-{$data['id']}-btn-show-form-boka' class='btn-boka'>Boka</button></span>
+                    <span class='th' id='sort-date'>DATUM</span>
+                    <span class='th' id='sort-place'>PLATS</span>
+                    <span class='th' id='sort-price'>PRIS</span>
                 </div>
-                <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='tr form-boka' id='{$level}-{$data['id']}-form-boka'>
-                    <span class='td'>
-                        <input name='name' type='text' placeholder='Förnamn*' required>
-                        <input name='sname' type='text' placeholder='Efternan*' required>
-                    </span>
-                    <span class='td'>
-                        <input name='persnmr' type='text' pattern='[0-9]*' placeholder='persnmr. ååmmddnnnn*' required oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
-                        type = 'number'
-                        maxlength = '10'>
-                        <input name='tel' type='text' pattern='[0-9]*' placeholder='tel. 0700557799*' required>
-                    </span>
-                    <span class='td'>
-                        <input name='email' type='email' placeholder='Email*' required>
-                        <input name='firm' type='text' placeholder='Företag'>
-                    </span>
-                    <span class='td'>
-                        <input name='comment' type='text' placeholder='Övrigt'>
-                        <input name='submit' type='submit' value='BOKA'>
-                    </span>
-                </form>";
+                ";
+
+                while ($data=$req->fetch()) {
+                    echo "
+                    <div class='tr'>
+                        <span class='td'>{$data['date']}</span>
+                        <span class='td'>{$data['place']}</span>
+                        <span class='td'>{$data['price']}</span>
+                        <span class='td'><button id='{$level}-{$data['id']}-btn-show-form-boka' class='btn-boka'>Boka</button></span>
+                    </div>
+                    <form action='assets/php_assets/sendmail.php?level={$level}&id={$data['id']}' method='post' class='tr form-boka' id='{$level}-{$data['id']}-form-boka'>
+                        <span class='td'>
+                            <input name='name' type='text' placeholder='Förnamn*' required>
+                            <input name='sname' type='text' placeholder='Efternan*' required>
+                        </span>
+                        <span class='td'>
+                            <input name='persnmr' type='text' pattern='[0-9]*' placeholder='persnmr. ååmmddnnnn*' required oninput='javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);'
+                            type = 'number'
+                            maxlength = '10'>
+                            <input name='tel' type='text' pattern='[0-9]*' placeholder='tel. 0700557799*' required>
+                        </span>
+                        <span class='td'>
+                            <input name='email' type='email' placeholder='Email*' required>
+                            <input name='firm' type='text' placeholder='Företag'>
+                        </span>
+                        <span class='td'>
+                            <input name='comment' type='text' placeholder='Övrigt'>
+                            <input name='submit' type='submit' value='BOKA'>
+                        </span>
+                    </form>";
+                }
             }
         }
 
