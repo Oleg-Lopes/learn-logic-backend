@@ -13,28 +13,15 @@
     <script src="https://cdn.rawgit.com/nnattawat/flip/master/dist/jquery.flip.min.js"></script>
     <script>
         $(document).ready(function() {
-            $("#card").click(function() {
-                $("#card").flip();
-            });
+            
         });
     </script>
     <style>
-        #card div {
-            width: 200px;
-            height: 200px;
-            background: red;
-            color: #fff;
-        }
-        .back {
-            /* display: none; */
-        }
+        
     </style>
     <title>Document</title>
 </head>
 <body>
-    <div id="card">
-        <div class="front">FRooooooooooooooooONT</div>
-        <div class="back">BaaaaaaaaaaaaaaaaaACK</div>
-    </div>
+    
 </body>
 </html>
